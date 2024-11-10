@@ -28,6 +28,8 @@ public class V2ApiDelegateImpl implements V2ApiDelegate{
      */
     @Override
     public ResponseEntity<Application> v2AppsAppIdGet(String appId) {
+//        if(getRequest().isPresent())
+
         return V2ApiDelegate.super.v2AppsAppIdGet(appId);
     }
 

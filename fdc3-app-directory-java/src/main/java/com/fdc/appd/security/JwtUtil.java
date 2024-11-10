@@ -1,7 +1,9 @@
 package com.fdc.appd.security;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+
 import java.security.Key;
 import java.util.Optional;
 
@@ -24,5 +26,15 @@ public class JwtUtil {
         } catch (Exception e) {
             return Optional.empty();
         }
+    }
+
+    public static String getUserAndRole(String token){
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(getSigningKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+        return "";
+        //return new Pair()
     }
 }
