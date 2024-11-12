@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * This is the implementation for the reading the Application data from a JSON file.
+ */
 @Service
 public class V2ApplicationJsonReaderImpl implements  V2ApplicationReader{
 
@@ -22,6 +25,12 @@ public class V2ApplicationJsonReaderImpl implements  V2ApplicationReader{
     private List<Application> allApplications;
 
 
+    /**
+     *
+     * @param appId
+     * @return Application
+     * @throws IOException
+     */
 
     @Override
     public Application getApplication(String appId) throws IOException {
@@ -33,6 +42,11 @@ public class V2ApplicationJsonReaderImpl implements  V2ApplicationReader{
 
     }
 
+    /**
+     *
+     * @return AppApplicationResponse
+     * @throws IOException
+     */
     @Override
     public AllApplicationsResponse getAllApplication() throws IOException {
         if(Objects.isNull(allApplications))
@@ -43,6 +57,11 @@ public class V2ApplicationJsonReaderImpl implements  V2ApplicationReader{
     }
 
 
+    /**
+     *
+     * @return List of <Application> from the Json
+     * @throws IOException
+     */
     private List<Application> readApplicationData() throws IOException {
 
         ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
