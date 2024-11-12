@@ -2,14 +2,23 @@ package com.fdc.appd;
 
 import com.fdc.appd.model.AllApplicationsResponse;
 import com.fdc.appd.model.Application;
+import com.fdc.appd.service.ApplicationReaderFactory;
+import com.fdc.appd.service.V2ApplicationReader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.NativeWebRequest;
 
+import java.io.IOException;
 import java.util.Optional;
 
+@Component
 public class V2ApiDelegateImpl implements V2ApiDelegate{
 
 
+
+    @Autowired
+    ApplicationReaderFactory readerFactory;
 
     @Override
     public Optional<NativeWebRequest> getRequest() {
@@ -28,9 +37,12 @@ public class V2ApiDelegateImpl implements V2ApiDelegate{
      */
     @Override
     public ResponseEntity<Application> v2AppsAppIdGet(String appId) {
-//        if(getRequest().isPresent())
-
-        return V2ApiDelegate.super.v2AppsAppIdGet(appId);
+        V2ApplicationReader applicationReader = readerFactory.createApplicationReader();
+        try {
+            return ResponseEntity.ok(applicationReader.getApplication(appId));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -44,6 +56,14 @@ public class V2ApiDelegateImpl implements V2ApiDelegate{
      */
     @Override
     public ResponseEntity<AllApplicationsResponse> v2AppsGet() {
-        return V2ApiDelegate.super.v2AppsGet();
+        V2ApplicationReader applicationReader = readerFactory.createApplicationReader();
+        try {
+            AllApplicationsResponse allApplication = applicationReader.getAllApplication();
+            allApplication.setMessage("Ok");
+            ResponseEntity<AllApplicationsResponse> ok = ResponseEntity.ok(allApplication);
+            return ok;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

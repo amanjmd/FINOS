@@ -7,7 +7,6 @@ import jakarta.annotation.Generated;
 import jakarta.validation.Valid;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -24,7 +23,7 @@ public class InteropIntents {
   private Map<String, Intent> listensFor = new HashMap<>();
 
   @Valid
-  private Map<String, List<String>> raises = new HashMap<>();
+  private Map<String, Intent> raises = new HashMap<>();
 
   public InteropIntents listensFor(Map<String, Intent> listensFor) {
     this.listensFor = listensFor;
@@ -54,12 +53,12 @@ public class InteropIntents {
     this.listensFor = listensFor;
   }
 
-  public InteropIntents raises(Map<String, List<String>> raises) {
+  public InteropIntents raises(Map<String, Intent> raises) {
     this.raises = raises;
     return this;
   }
 
-  public InteropIntents putRaisesItem(String key, List<String> raisesItem) {
+  public InteropIntents putRaisesItem(String key, Intent raisesItem) {
     if (this.raises == null) {
       this.raises = new HashMap<>();
     }
@@ -74,11 +73,11 @@ public class InteropIntents {
   @Valid 
   @Schema(name = "raises", description = "A mapping of Intent names that an app raises (via `fdc3.raiseIntent`) to an array of context  type names that it may be raised with.  Use the intent name \"any\" to represent use of the `fdc3.raiseIntentForContext` and  `fdc3.findIntentForContext` functions, which allow the user to select from intents available for a  specified context type.  This metadata is not currently used by the desktop agent, but is provided to help find apps that will interoperate with this app and to document API interactions for use by other app developers. ", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("raises")
-  public Map<String, List<String>> getRaises() {
+  public Map<String, Intent> getRaises() {
     return raises;
   }
 
-  public void setRaises(Map<String, List<String>> raises) {
+  public void setRaises(Map<String,Intent> raises) {
     this.raises = raises;
   }
 

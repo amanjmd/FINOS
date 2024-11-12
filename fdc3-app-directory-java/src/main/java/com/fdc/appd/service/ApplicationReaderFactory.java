@@ -2,13 +2,15 @@ package com.fdc.appd.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ApplicationReaderFactory {
 
-    @Autowired(required = false)
+    @Autowired
     V2ApplicationJsonReaderImpl v2ApplicationJsonReader;
 
-    @Value("fdc.application.readerType")
+    @Value("${fdc.application.readerType}")
     String readerType;
 
     public V2ApplicationReader createApplicationReader(){

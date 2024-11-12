@@ -3,9 +3,7 @@ package com.fdc.appd.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.annotation.Generated;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+//import jakarta.persistence.Column;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -20,34 +18,34 @@ import java.util.*;
 
 @Schema(name = "Application", description = "Defines an application retrieved from an FDC3 App Directory, which can then be launched. Launching typically means running for a user on a desktop. The details around 'launching' including who or what might do it, and how the launch action is initiated are discussed elsewhere in the FDC3 App Directory spec. ")
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2024-11-10T19:40:14.622447+05:30[Asia/Kolkata]", comments = "Generator version: 7.8.0")
-@Entity
+
 public class Application {
 
-  @Id
+
   private String appId;
 
-  @Column
+
   private String name;
 
-  @Column
+
   private Type type;
 
-  @Column
-  private LaunchDetails details;
 
-  @Column
+  private Map<String , Object> details;
+
+
   private String version;
 
-  @Column
+
   private String title;
 
-  @Column
+
   private String tooltip;
 
-  @Column
+
   private String lang;
 
-  @Column
+
   private String description;
 
   @Valid
@@ -59,22 +57,22 @@ public class Application {
   @Valid
   private List<@Valid Screenshot> screenshots = new ArrayList<>();
 
-  @Column
+
   private String contactEmail;
 
-  @Column
+
   private String supportEmail;
 
   private URI moreInfo;
 
-  @Column
+
   private String publisher;
 
   @Valid
   private List<@Valid NameValuePair> customConfig = new ArrayList<>();
 
   @Valid
-  private Map<String, HostManifestsValue> hostManifests = new HashMap<>();
+  private Map<String, Object> hostManifests = new HashMap<>();
 
   private Interop interop;
 
@@ -88,7 +86,7 @@ public class Application {
   /**
    * Constructor with only required parameters
    */
-  public Application(String appId, String name, Type type, LaunchDetails details) {
+  public Application(String appId, String name, Type type, Map<String,Object> details) {
     this.appId = appId;
     this.name = name;
     this.type = type;
@@ -155,7 +153,7 @@ public class Application {
     this.type = type;
   }
 
-  public Application details(LaunchDetails details) {
+  public Application details(Map<String , Object> details) {
     this.details = details;
     return this;
   }
@@ -167,11 +165,11 @@ public class Application {
   @NotNull @Valid 
   @Schema(name = "details", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("details")
-  public LaunchDetails getDetails() {
+  public Map<String , Object> getDetails() {
     return details;
   }
 
-  public void setDetails(LaunchDetails details) {
+  public void setDetails(Map<String , Object> details) {
     this.details = details;
   }
 
@@ -467,7 +465,7 @@ public class Application {
     this.customConfig = customConfig;
   }
 
-  public Application hostManifests(Map<String, HostManifestsValue> hostManifests) {
+  public Application hostManifests(Map<String, Object> hostManifests) {
     this.hostManifests = hostManifests;
     return this;
   }
@@ -487,11 +485,11 @@ public class Application {
   @Valid 
   @Schema(name = "hostManifests", description = "A mapping from host name to a host-specific application manifest object or URI from which that manifest can be retrieved. The manifest should provide details required to launch and use the application within the specified host. The manifest _MAY_ duplicate or  override information provided in the `details` field.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("hostManifests")
-  public Map<String, HostManifestsValue> getHostManifests() {
+  public Map<String, Object> getHostManifests() {
     return hostManifests;
   }
 
-  public void setHostManifests(Map<String, HostManifestsValue> hostManifests) {
+  public void setHostManifests(Map<String, Object> hostManifests) {
     this.hostManifests = hostManifests;
   }
 
