@@ -26,9 +26,8 @@ All this information is readily available in one place and can be used both to p
 > mvn clean install 
 
 3. Run the application
->cd target 
-> 
->java -jar *.jar 
+
+>java -jar target/*.jar 
 
 ### API End points implemented 
 1. /v2/apps
