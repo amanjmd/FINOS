@@ -10,7 +10,7 @@ All this information is readily available in one place and can be used both to p
 
 This is a reference implementation for app Directory implemented in Java and springboot.
 
-The implementation is packaged with a sample App Directory JSON (src/main/resources/local.v2.json) to demo the functional APIs out of he bix We have also configured a sample user base to demo the authorization and authentication. The details for exeuting the API end points are gibven below.
+The implementation is packaged with a sample App Directory JSON (src/main/resources/local.v2.json) to demo the functional APIs out of he bix We have also configured a sample user base to demo the authorization and authentication. The details for exeuting the API end points are given below.
 
 
 ## Try out on local machine
