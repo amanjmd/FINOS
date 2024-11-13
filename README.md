@@ -15,7 +15,7 @@ All this information is readily available in one place and can be used both to p
 >
 > cd FDC3
 > 
-> git clone 
+> git clone https://github.com/amanjmd/FINOS.git
 > 
 
 2. Install the Dependencies
