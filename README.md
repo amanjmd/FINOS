@@ -34,7 +34,16 @@ The implementation is packaged with a sample App Directory JSON (src/main/resour
 
 3. Run the application
 
->java -jar target/*.jar 
+>java -jar target/*.jar
+>
+
+# Test the application
+>curl --location 'http://localhost:8080/v2/apps' \
+>
+>--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWxpY2UifQ.2cfycMS2ZZlROOrhG23Dz8fxnq2AnW4dspC3agP2MMo' \
+>
+>--data ''
+
 
 ### API End points implemented 
 1. /v2/apps
