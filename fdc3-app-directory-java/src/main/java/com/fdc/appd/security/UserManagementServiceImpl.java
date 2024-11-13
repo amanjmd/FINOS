@@ -19,7 +19,7 @@ public class UserManagementServiceImpl implements UserManagementService {
     public boolean validateUser(String userName) {
         if(Objects.isNull(userDb))
             initializeUserDb();
-        return userName.contains(userName);
+        return userDb.containsKey(userName);
     }
 
     private void initializeUserDb()  {

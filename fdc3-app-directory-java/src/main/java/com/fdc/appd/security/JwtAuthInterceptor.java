@@ -26,7 +26,7 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
         String token = authHeader.substring(7);
         var claims = JwtUtil.validateToken(token);
 
-        if (claims.isEmpty() || !userManagementService.validateUser(token)) {
+        if (claims.isEmpty()) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Invalid or expired JWT token");
             return false;

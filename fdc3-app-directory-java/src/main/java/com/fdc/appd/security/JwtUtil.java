@@ -20,9 +20,11 @@ public class JwtUtil {
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
+
             return Optional.of(claims);
         } catch (Exception e) {
-            return Optional.empty();
+            System.out.println(e);
+            throw new RuntimeException("Invalid token");
         }
     }
 
@@ -30,6 +32,6 @@ public class JwtUtil {
     public static String getUser(String token){
         Optional<Claims> claims = validateToken(token.substring(7));
         Claims claim = claims.get();
-        return String.valueOf(claim.get("user"));
+        return String.valueOf(claim.get("name"));
     }
 }
