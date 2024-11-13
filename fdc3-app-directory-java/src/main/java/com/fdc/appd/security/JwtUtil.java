@@ -28,7 +28,7 @@ public class JwtUtil {
 
 
     public static String getUser(String token){
-        Optional<Claims> claims = validateToken(token);
+        Optional<Claims> claims = validateToken(token.substring(7));
         Claims claim = claims.get();
         return String.valueOf(claim.get("user"));
     }

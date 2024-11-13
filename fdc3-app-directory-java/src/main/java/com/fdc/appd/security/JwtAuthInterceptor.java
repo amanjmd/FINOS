@@ -2,12 +2,15 @@ package com.fdc.appd.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 @Component
 public class JwtAuthInterceptor implements HandlerInterceptor {
 
+    @Autowired
+    private UserManagementService userManagementService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String authHeader = request.getHeader("Authorization");
@@ -23,7 +26,7 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
         String token = authHeader.substring(7);
         var claims = JwtUtil.validateToken(token);
 
-        if (claims.isEmpty()) {
+        if (claims.isEmpty() || !userManagementService.validateUser(token)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.getWriter().write("Invalid or expired JWT token");
             return false;

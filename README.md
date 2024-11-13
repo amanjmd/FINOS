@@ -8,6 +8,7 @@ All this information is readily available in one place and can be used both to p
 
 ## Try out on local machine
 
+> Note : Required Java Version 17+.
 
 1. Clone the repository to your local machine 
 
