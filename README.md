@@ -51,11 +51,11 @@ It can  be further extended using the "V2ApplicationReader" to provide the custo
 
 This implementaiton further includes a simpler implementation of authentication and authorization . Here in ,  there are 2 valid users "alice", "bob" (user_db.json).
 
-To run this application in local , we would require the JWT tokens . Below are the tokens for Alice and Bob . 
+To run this application in local , we would require the JWT tokens . Below are the tokens for Alice and Bob , which needs to be sent in "Authorization" header. 
 
-> Alice : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWxpY2UiLCJyb2xlIjoicG9ydGZvbGlvLW1hbmFnZXIifQ.iJk3t2bUjWQJ-CNaJ4dzzJ5AQfcjpb8oxq0epX9G8cg
+> Alice : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWxpY2UiLCJyb2xlIjoicG9ydGZvbGlvLW1hbmFnZXIifQ.iJk3t2bUjWQJ-CNaJ4dzzJ5AQfcjpb8oxq0epX9G8cg
 > 
-> Bob : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYm9iIiwicm9sZSI6ImVxdWl0eS1zZWxsLXRyYWRlciJ9.NLfQbFWUrOtiHEe_FpMsB3TK-DtJgLJdBrHwVNGbbIw
+> Bob : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYm9iIiwicm9sZSI6ImVxdWl0eS1zZWxsLXRyYWRlciJ9.NLfQbFWUrOtiHEe_FpMsB3TK-DtJgLJdBrHwVNGbbIw
 > 
 > Key to generate token : mIU3RoraRfc8TF3ScboaF8lcQF0nb5gb
 > 
