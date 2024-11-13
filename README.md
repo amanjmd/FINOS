@@ -29,7 +29,7 @@ All this information is readily available in one place and can be used both to p
 > 
 >java -jar *.jar 
 
-### End points implemented 
+### API End points implemented 
 1. /v2/apps
 2. /v2/apps/{appId}
 
@@ -38,6 +38,31 @@ All this information is readily available in one place and can be used both to p
 This is a reference implementation for app Directory implemented in Java and springboot.
 
 The implementation is packaged with a sample App Directory JSON (src/main/resources/local.v2.json) which is  processed and the results are returned by the above-mentioned APIs . 
+
+
+# Key Demos 
+
+## Support for multiple Datasources 
+This is implementation by default implementation for the JSON datasource . 
+It can  be further extended using the "V2ApplicationReader" to provide the custom implementation for other datasources like releational , NoSQL etc.
+
+## Support for authentication/ authorization 
+
+This implementaiton further includes a simpler implementation of authentication and authorization . Here in ,  there are 2 valid users "alice", "bob" (user_db.json).
+
+To run this application in local , we would require the JWT tokens . Below are the tokens for Alice and Bob . 
+
+> Alice : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWxpY2UiLCJyb2xlIjoicG9ydGZvbGlvLW1hbmFnZXIifQ.iJk3t2bUjWQJ-CNaJ4dzzJ5AQfcjpb8oxq0epX9G8cg
+> 
+> Bob : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYm9iIiwicm9sZSI6ImVxdWl0eS1zZWxsLXRyYWRlciJ9.NLfQbFWUrOtiHEe_FpMsB3TK-DtJgLJdBrHwVNGbbIw
+> 
+> Key to generate token : mIU3RoraRfc8TF3ScboaF8lcQF0nb5gb
+> 
+> 
+Note : In the enterprise implementation , there would be an IAM services in place to generate the token.Hence the UserManagementService can be modified accordingly.
+
+
+
 
 
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * The <fdc.appd.appJson> value should be included in the application properties.</Path>
  */
 @Component
-@ConfigurationProperties("fdc.appd.appJson")
+@ConfigurationProperties("fdc.appd.app-json")
 public class JsonDatasourceConfig {
 
     public String path ;

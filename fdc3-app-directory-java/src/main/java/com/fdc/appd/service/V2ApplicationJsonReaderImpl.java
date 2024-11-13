@@ -56,7 +56,6 @@ public class V2ApplicationJsonReaderImpl implements  V2ApplicationReader{
         return response;
     }
 
-
     /**
      *
      * @return List of <Application> from the Json

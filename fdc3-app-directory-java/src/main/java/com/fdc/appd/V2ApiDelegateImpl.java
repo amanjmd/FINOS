@@ -2,28 +2,28 @@ package com.fdc.appd;
 
 import com.fdc.appd.model.AllApplicationsResponse;
 import com.fdc.appd.model.Application;
+import com.fdc.appd.security.JwtUtil;
+import com.fdc.appd.security.UserManagementService;
 import com.fdc.appd.service.ApplicationReaderFactory;
 import com.fdc.appd.service.V2ApplicationReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.NativeWebRequest;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @Component
 public class V2ApiDelegateImpl implements V2ApiDelegate{
 
 
+    @Autowired
+    UserManagementService userManagementService;
+
 
     @Autowired
     ApplicationReaderFactory readerFactory;
 
-    @Override
-    public Optional<NativeWebRequest> getRequest() {
-        return V2ApiDelegate.super.getRequest();
-    }
 
     /**
      * GET /v2/apps/{appId} : Retrieve an application definition
@@ -36,7 +36,9 @@ public class V2ApiDelegateImpl implements V2ApiDelegate{
      * @see V2Api#v2AppsAppIdGet
      */
     @Override
-    public ResponseEntity<Application> v2AppsAppIdGet(String appId) {
+    public ResponseEntity<Application> v2AppsAppIdGet(String appId, String authHeader) {
+        if(!userManagementService.validateUser(JwtUtil.getUser(authHeader)))
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         V2ApplicationReader applicationReader = readerFactory.createApplicationReader();
         try {
             return ResponseEntity.ok(applicationReader.getApplication(appId));
@@ -55,7 +57,9 @@ public class V2ApiDelegateImpl implements V2ApiDelegate{
      * @see V2Api#v2AppsGet
      */
     @Override
-    public ResponseEntity<AllApplicationsResponse> v2AppsGet() {
+    public ResponseEntity<AllApplicationsResponse> v2AppsGet(String authHeader) {
+        if(!userManagementService.validateUser(JwtUtil.getUser(authHeader)))
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         V2ApplicationReader applicationReader = readerFactory.createApplicationReader();
         try {
             AllApplicationsResponse allApplication = applicationReader.getAllApplication();

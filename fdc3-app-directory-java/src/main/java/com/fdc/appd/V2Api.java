@@ -20,6 +20,7 @@ import jakarta.annotation.Generated;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -73,10 +74,10 @@ public interface V2Api {
         produces = { "application/json", "*/*" }
     )
     
-    default ResponseEntity<Application> v2AppsAppIdGet(
+    default ResponseEntity<Application> v2AppsAppIdGet(@RequestHeader(name="Authorization") String token,
         @Parameter(name = "appId", description = "", required = true, in = ParameterIn.PATH) @PathVariable("appId") String appId
     ) {
-        return getDelegate().v2AppsAppIdGet(appId);
+        return getDelegate().v2AppsAppIdGet(appId,token);
     }
 
 
@@ -120,10 +121,10 @@ public interface V2Api {
         produces = { "application/json", "*/*" }
     )
     
-    default ResponseEntity<AllApplicationsResponse> v2AppsGet(
+    default ResponseEntity<AllApplicationsResponse> v2AppsGet(@RequestHeader(name="Authorization") String token
         
     ) {
-        return getDelegate().v2AppsGet();
+        return getDelegate().v2AppsGet(token);
     }
 
 }

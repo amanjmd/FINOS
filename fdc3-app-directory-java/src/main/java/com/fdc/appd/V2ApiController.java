@@ -16,7 +16,7 @@ public class V2ApiController implements V2Api {
     private final V2ApiDelegate delegate;
 
     public V2ApiController(@Autowired(required = false) V2ApiDelegate delegate) {
-        this.delegate = Optional.ofNullable(delegate).orElse(new V2ApiDelegate() {});
+        this.delegate = Optional.ofNullable(delegate).get();
     }
 
     @Override
