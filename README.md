@@ -6,6 +6,13 @@ The application metadata stored in appD records may include: the app name, type,
 
 All this information is readily available in one place and can be used both to populate a launcher or app catalog UI for your users, and by the Desktop Agent managing the apps on your desktop. In fact, if your desktop platform supports the FDC3 standard, appD is the primary way that the FDC3 Desktop Agent implementation should receive the details about apps available to run on your desktop. Conversely, if an app is not listed in appD, the Desktop Agent can’t ensure its participation in context sharing or use it to resolve intents.
 
+## Foreword 
+
+This is a reference implementation for app Directory implemented in Java and springboot.
+
+The implementation is packaged with a sample App Directory JSON (src/main/resources/local.v2.json) which is  processed and the results are returned by the above-mentioned APIs . 
+
+
 ## Try out on local machine
 
 > Note : Required Java Version 17+.
@@ -32,12 +39,6 @@ All this information is readily available in one place and can be used both to p
 ### API End points implemented 
 1. /v2/apps
 2. /v2/apps/{appId}
-
-## Foreword 
-
-This is a reference implementation for app Directory implemented in Java and springboot.
-
-The implementation is packaged with a sample App Directory JSON (src/main/resources/local.v2.json) which is  processed and the results are returned by the above-mentioned APIs . 
 
 
 # Key Demos 
